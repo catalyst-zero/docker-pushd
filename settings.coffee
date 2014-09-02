@@ -1,6 +1,6 @@
 exports.server =
-    redis_port: 6379
-    redis_host: process.env['REDIS_PORT_6379_TCP_ADDR']
+    redis_port: process.env['REDIS_PORT_6379_TCP_PORT'] or 6379
+    redis_host: process.env['REDIS_PORT_6379_TCP_ADDR'] or "localhost"
     # redis_socket: '/var/run/redis/redis.sock'
     # redis_auth: 'password'
     tcp_port: 80
@@ -33,7 +33,7 @@ exports['apns'] =
     cacheLength: 100
     # Selects data keys which are allowed to be sent with the notification
     # Keep in mind that APNS limits notification payload size to 256 bytes
-    payloadFilter: ['messageFrom']
+    payloadFilter: ['messageFrom', 'news_id']
     gateway: process.env['APN_PUSH_GATEWAY']
     address: process.env['APN_FEEDBACK_ADDRESS']
 
@@ -77,3 +77,5 @@ exports['mpns-raw'] =
     enabled: no
     class: require('./lib/pushservices/mpns').PushServiceMPNS
     type: 'raw'
+
+exports['loglevel'] = process.env['LOGLEVEL'] or 'silly'

@@ -28,6 +28,7 @@ RUN npm install coffee-script -g
 RUN git clone https://github.com/rs/pushd.git /opt/pushd/
 RUN cd /opt/pushd/ && npm install
 ADD ./main.sh /usr/local/bin/main.sh
+ADD ./settings.coffee /opt/pushd/settings.coffee
 
 EXPOSE 80
 
